@@ -1,4 +1,9 @@
 # How to Save Cyclists’ Lives in Paris?
+#### Team members
+*Zhaoqin Yang*  
+*Puhuan Wang*  
+*Fuzhen Yin*  
+*Yu-Mei Lin*  
 
 
 ## Data Sources
