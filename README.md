@@ -5,6 +5,9 @@
 *Fuzhen Yin*  
 *Yu-Mei Lin*  
 
+## Research Question
+* What is the relationship between infrastructure and cyclists’ casualty in Paris? 
+* What investment will be more worth in curbing the cyclists’ casualty?
 
 ## Data Sources
 
