@@ -1,0 +1,75 @@
+---
+title: "QM"
+author: yang
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+
+df = dataset[,c('Y_Bike_accidents_density','X1_Proportion_of_mainroad', 'X2_Proportion_of_busline', 'X3_Proportion_of_cycleline',     'X4_Proportion_of_mixedline', 'X5_Proportion_of_20limit', 'X6_Cross_road_density', 'X7_Carpark_density', 'X8_Altitude_STD', 'X9_TfcLight_density', 'X10_Light_density', 'X11_Light_flux_density', 'X12_Limit30')]
+
+```
+```{r}
+summary(df)
+
+```
+```{r}
+cor_matrix<-cor(df)
+heatmap(cor_matrix)
+```
+```{r}
+library(car)
+scatterplotMatrix(df,spread = FALSE, smoother.args = list(lty = 2),main = "Scatter Plot Matrix")
+```
+
+```{r}
+fit <- lm( Y_Bike_accidents_density ~ X1_Proportion_of_mainroad + X2_Proportion_of_busline + X3_Proportion_of_cycleline +X4_Proportion_of_mixedline + X5_Proportion_of_20limit + X6_Cross_road_density + X7_Carpark_density + X8_Altitude_STD + X9_TfcLight_density + X10_Light_density + X11_Light_flux_density + X12_Limit30, data = df)
+summary(fit)
+```
+
+```{r}
+confint(fit)
+```
+```{r}
+par(mfrow = c(2,2))
+plot(fit)
+```
+
+
+
+```{r}
+library(MASS)
+stepAIC(fit, direction = "backward")
+```
+```{r}
+fit_model2 = lm(Y_Bike_accidents_density ~ X1_Proportion_of_mainroad + 
+    X3_Proportion_of_cycleline + X6_Cross_road_density + X8_Altitude_STD + 
+    X9_TfcLight_density + X11_Light_flux_density + X12_Limit30, 
+    data = df)
+summary(fit_model2)
+```
+```{r}
+confint(fit_model2)
+```
+```{r}
+library(leaps)
+leaps <- regsubsets(Y_Bike_accidents_density ~ X1_Proportion_of_mainroad + X2_Proportion_of_busline + X3_Proportion_of_cycleline +X4_Proportion_of_mixedline + X5_Proportion_of_20limit + X6_Cross_road_density + X7_Carpark_density + X8_Altitude_STD + X9_TfcLight_density + X10_Light_density + X11_Light_flux_density + X12_Limit30, data = df, nbest = 5)
+plot(leaps,scale = "adjr2")
+```
+```{r}
+fit_model3 = lm(formula = Y_Bike_accidents_density ~ X1_Proportion_of_mainroad + X3_Proportion_of_cycleline +X4_Proportion_of_mixedline + X6_Cross_road_density + X8_Altitude_STD + X9_TfcLight_density  + X11_Light_flux_density + X12_Limit30, 
+    data = df)
+summary(fit_model3)
+```
+```{r}
+par(mfrow = c(2,2))
+plot(fit_model2)
+```
+```{r}
+par(mfrow = c(2,2))
+plot(fit_model3)
+```
