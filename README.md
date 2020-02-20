@@ -1,9 +1,7 @@
 # How to Save Cyclists’ Lives in Paris?
 #### Team members
 *Zhaoqin Yang*  
-*Puhuan Wang*  
-*Fuzhen Yin*  
-*Yu-Mei Lin*  
+
 
 ## Research Question
 * What is the relationship between infrastructure and cyclists’ casualty in Paris? 
